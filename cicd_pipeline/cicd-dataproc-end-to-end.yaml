@@ -26,21 +26,8 @@ steps:
       - '--secondary-worker-type=non-preemptible'
       - '--project=$PROJECT_ID'
 
-  # 2. Submit the BigQueryLoaderReader PySpark Job to the Cluster
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'gcloud'
-    args:
-      - 'dataproc'
-      - 'jobs'
-      - 'submit'
-      - 'pyspark'
-      - 'gs://$_DATA_REPO/BigQueryLoaderReader.py'
-      - '--cluster=cluster-bikeshare'
-      - '--region=$_REGION'
-      - '--project=$PROJECT_ID'
-#      - '--properties=spark.jars.packages=org.apache.spark:spark-sql-kafka-0-10_2.13:4.1.2'
 
-    # 3. Submit the Bikeshare_join_1 PySpark Job to the Cluster
+    # 2. Submit the Bikeshare_join_1 PySpark Job to the Cluster
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'gcloud'
     args:
@@ -48,13 +35,13 @@ steps:
       - 'jobs'
       - 'submit'
       - 'pyspark'
-      - 'gs://$_DATA_REPO/Bikeshare_join_1.py'
+      - 'gs://$_DATA_REPO/Bikeshare_batch_1.py'
       - '--cluster=cluster-bikeshare'
       - '--region=$_REGION'
       - '--project=$PROJECT_ID'
 
       
-  # 4. Delete/Clean up the Cluster
+  # 3. Delete/Clean up the Cluster
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'gcloud'
     args:
