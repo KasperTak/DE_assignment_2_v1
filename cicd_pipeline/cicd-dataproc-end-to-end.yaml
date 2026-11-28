@@ -35,7 +35,7 @@ steps:
       - 'jobs'
       - 'submit'
       - 'pyspark'
-      - 'gs://$_DATA_REPO/Bikeshare_batch_1.py'
+      - 'gs://$_DATA_REPO/batch_processing.py'
       - '--cluster=cluster-bikeshare'
       - '--region=$_REGION'
       - '--project=$PROJECT_ID'
